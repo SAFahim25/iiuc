@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>IIUC</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Login/Signup Section -->
+  <div id="auth-section" class="center">
+    <div class="auth-box">
+      <div class="auth-toggle">
+        <button id="show-login" class="toggle-btn active">Log In</button>
+        <button id="show-signup" class="toggle-btn">Sign Up</button>
+      </div>
+      <!-- Login -->
+      <form id="login-form" autocomplete="off">
+        <h2>Login</h2>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit" class="main-btn">Log In</button>
+      </form>
+      <!-- Signup -->
+      <form id="signup-form" class="hidden" autocomplete="off">
+        <h2>Sign Up</h2>
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit" class="main-btn second">Sign Up</button>
+      </form>
+    </div>
+  </div>
+  <!-- Dashboard -->
+  <div id="dashboard-section" class="center hidden">
+    <div class="dash-profile">
+      <img src="https://mir-s3-cdn-cf.behance.net/user/230/7bb3991623324013.65ab99587e82d.jpg" alt="Profile" class="dash-avatar">
+      <h3 id="dashboard-name">Username</h3>
+      <p>Email: <span id="dashboard-email"></span></p>
+      <button id="logout-btn" class="main-btn logout">Log Out</button>
+    </div>
+  </div>
+  <!-- Main Page -->
+  <div id="main-section" class="hidden">
+    <nav class="navbar">
+      <span class="logo">MiniTube</span>
+      <div class="nav-profile">
+        <img src="https://mir-s3-cdn-cf.behance.net/user/230/7bb3991623324013.65ab99587e82d.jpg" id="profile-icon" class="profile-icon" alt="Profile">
+        <div id="profile-menu" class="profile-menu hidden">
+          <img src="https://mir-s3-cdn-cf.behance.net/user/230/7bb3991623324013.65ab99587e82d.jpg" class="profile-avatar" alt="Profile">
+          <div id="profile-name" class="profile-name">Username</div>
+          <div id="profile-email" class="profile-mail">user@example.com</div>
+          <button id="navbar-logout" class="main-btn logout">Log Out</button>
+        </div>
+      </div>
+    </nav>
+    <!-- YouTube Cards -->
+    <div class="card-container">
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=hgZrPTsu1Hw&list=PLnMKJvEgUJfPXf4ZLJdxWCjUpEcTe4Koh','_blank')">
+        <img src="https://img.youtube.com/vi/hgZrPTsu1Hw/mqdefault.jpg" alt="Math Class">
+        <div class="card-title">MATH CLASS - Oct 23, 2021</div>
+      </div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=5PaM_yqyOZU&list=PLnMKJvEgUJfOAzLgU5i1UU-0FxePcvODR','_blank')">
+        <img src="https://img.youtube.com/vi/5PaM_yqyOZU/mqdefault.jpg" alt="Video 2">
+        <div class="card-title">YT Video 2</div>
+      </div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=KJjYQq5or7U&list=PLnMKJvEgUJfMfjegbHhESbXiCdhLPEJ08','_blank')">
+        <img src="https://img.youtube.com/vi/KJjYQq5or7U/mqdefault.jpg" alt="Video 3">
+        <div class="card-title">YT Video 3</div>
+      </div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=3_Mz1Pu3njg&list=PLnMKJvEgUJfOf52aD3cnji373pQL0YmRz','_blank')">
+        <img src="https://img.youtube.com/vi/3_Mz1Pu3njg/mqdefault.jpg" alt="Video 4">
+        <div class="card-title">YT Video 4</div>
+      </div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=9C2tEYXQfHY&list=PLnMKJvEgUJfMzRVJglKGtFhraUxUM-3Xw','_blank')">
+        <img src="https://img.youtube.com/vi/9C2tEYXQfHY/mqdefault.jpg" alt="Video 5">
+        <div class="card-title">YT Video 5</div>
+      </div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=mByW0zgBUpg&list=PLnMKJvEgUJfMoKV7R0XumEEFaNQFGEhWh','_blank')">
+        <img src="https://img.youtube.com/vi/mByW0zgBUpg/mqdefault.jpg" alt="Video 6">
+        <div class="card-title">YT Video 6</div>
+      </div>
+    </div>
+  </div>
+  <div class="card-container">
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=hgZrPTsu1Hw&list=PLnMKJvEgUJfPXf4ZLJdxWCjUpEcTe4Koh','_blank')">
+        <img src="https://img.youtube.com/vi/hgZrPTsu1Hw/mqdefault.jpg" alt="Math Class">
+        <div class="card-title">MATH CLASS - Oct 23, 2021</div>
+      </div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=5PaM_yqyOZU&list=PLnMKJvEgUJfOAzLgU5i1UU-0FxePcvODR','_blank')">
+        <img src="https://img.youtube.com/vi/5PaM_yqyOZU/mqdefault.jpg" alt="Video 2">
+        <div class="card-title">YT Video 2</div>
+      </div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=KJjYQq5or7U&list=PLnMKJvEgUJfMfjegbHhESbXiCdhLPEJ08','_blank')">
+        <img src="https://img.youtube.com/vi/KJjYQq5or7U/mqdefault.jpg" alt="Video 3">
+        <div class="card-title">YT Video 3</div>
+      </div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=3_Mz1Pu3njg&list=PLnMKJvEgUJfOf52aD3cnji373pQL0YmRz','_blank')">
+        <img src="https://img.youtube.com/vi/3_Mz1Pu3njg/mqdefault.jpg" alt="Video 4">
+        <div class="card-title">YT Video 4</div>
+      </div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=9C2tEYXQfHY&list=PLnMKJvEgUJfMzRVJglKGtFhraUxUM-3Xw','_blank')">
+        <img src="https://img.youtube.com/vi/9C2tEYXQfHY/mqdefault.jpg" alt="Video 5">
+        <div class="card-title">YT Video 5</div>
+      </div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=mByW0zgBUpg&list=PLnMKJvEgUJfMoKV7R0XumEEFaNQFGEhWh','_blank')">
+        <img src="https://img.youtube.com/vi/mByW0zgBUpg/mqdefault.jpg" alt="Video 6">
+        <div class="card-title">YT Video 6</div>
+      </div>
+    </div>
+  </div>
+  <!-- JS for Behavior -->
+  <script>
+    // Switch between forms
+    const loginF = document.getElementById('login-form');
+    const signupF = document.getElementById('signup-form');
+    document.getElementById('show-login').onclick = () => {
+      signupF.classList.add('hidden');
+      loginF.classList.remove('hidden');
+      document.getElementById('show-login').classList.add('active');
+      document.getElementById('show-signup').classList.remove('active');
+    };
+    document.getElementById('show-signup').onclick = () => {
+      loginF.classList.add('hidden');
+      signupF.classList.remove('hidden');
+      document.getElementById('show-signup').classList.add('active');
+      document.getElementById('show-login').classList.remove('active');
+    };
+    // Fake login/signup progression
+    loginF.onsubmit = function(e){
+      e.preventDefault();
+      const email = loginF.querySelector('input[type="email"]').value;
+      document.getElementById('dashboard-name').textContent = email.split('@')[0];
+      document.getElementById('dashboard-email').textContent = email;
+      document.getElementById('profile-name').textContent = email.split('@')[0];
+      document.getElementById('profile-email').textContent = email;
+      showOnly('dashboard-section');
+      setTimeout(() => showOnly('main-section'), 1000);
+    };
+    signupF.onsubmit = function(e){
+      e.preventDefault();
+      const name = signupF.querySelector('input[type="text"]').value;
+      const email = signupF.querySelector('input[type="email"]').value;
+      document.getElementById('dashboard-name').textContent = name;
+      document.getElementById('dashboard-email').textContent = email;
+      document.getElementById('profile-name').textContent = name;
+      document.getElementById('profile-email').textContent = email;
+      showOnly('dashboard-section');
+      setTimeout(() => showOnly('main-section'), 1000);
+    };
+    // Logout everywhere
+    document.getElementById('logout-btn').onclick = () => showOnly('auth-section');
+    document.getElementById('navbar-logout').onclick = () => showOnly('auth-section');
+    // Profile menu
+    const profIcon = document.getElementById('profile-icon');
+    const profMenu = document.getElementById('profile-menu');
+    profIcon.onclick = e => {
+      e.stopPropagation();
+      profMenu.classList.toggle('hidden');
+    };
+    document.body.onclick = () => profMenu.classList.add('hidden');
+    profMenu.onclick = e => e.stopPropagation();
+    // Show only the given section
+    function showOnly(id){
+      ['auth-section','dashboard-section','main-section'].forEach(sec => {
+        document.getElementById(sec).classList.add('hidden');
+      });
+      document.getElementById(id).classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
