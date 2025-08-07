@@ -4,7 +4,244 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>IIUC</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
+      margin: 0;
+      min-height: 100vh;
+      color: white;
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .auth-box {
+      background: #5b8888;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+      padding: 2.5em 2em;
+      border-radius: 1.25em;
+      width: 320px;
+      animation: fadeIn 0.8s;
+    }
+
+    @keyframes fadeIn {
+      from { transform: translateY(32px); opacity: 0; }
+      to { transform: none; opacity: 1; }
+    }
+
+    .auth-toggle {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 1.5em;
+    }
+
+    .toggle-btn {
+      padding: 0.4em 1.2em;
+      border-radius: 1em;
+      border: 1px solid #38bdf8;
+      background: transparent;
+      font-weight: 600;
+      color: #ffffff;
+      cursor: pointer;
+      transition: background 0.1s, color 0.1s;
+    }
+    .toggle-btn.active,
+    .toggle-btn:hover {
+      background: #38bdf8;
+      color: #fff;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+    input[type="text"], input[type="email"], input[type="password"] {
+      padding: 0.7em 1em;
+      border-radius: 0.4em;
+      border: none;
+      font-size: 1em;
+      background: #ffffff;
+      color: rgb(8, 8, 8);
+    }
+
+    input:focus {
+      outline: 2px solid #38bdf8;
+    }
+
+    .main-btn {
+      margin-top: 0.5em;
+      padding: 0.8em;
+      background: #38bdf8;
+      color: #fff;
+      border: none;
+      border-radius: 0.4em;
+      font-weight: 600;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .main-btn:hover {
+      background: #0ea5e9;
+      transform: scale(1.05);
+    }
+    .main-btn.second {
+      background: #3b82f6;
+    }
+    .main-btn.second:hover {
+      background: #2563eb;
+    }
+    .main-btn.logout {
+      background: #ef4444;
+      margin-top: 1.5em;
+    }
+    .main-btn.logout:hover {
+      background: #b91c1c;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Show Password Checkbox Styling */
+    .show-password-container {
+      margin-top: -10px;
+      margin-bottom: 10px;
+      font-size: 0.9em;
+      color: white;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .show-password-container input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    .show-password-container label {
+      cursor: pointer;
+    }
+
+    /* Dashboard styling */
+    #dashboard-section {
+      background: #1e293b;
+      border-radius: 1.25em;
+      padding: 2em 3em;
+      box-shadow: 0 2px 15px #38bdf827;
+      text-align: center;
+    }
+    .dash-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #38bdf8;
+      margin-bottom: 1em;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1em 2em;
+      background: #1e293b;
+      box-shadow: 0 2px 12px #0001;
+      color: white;
+    }
+
+    .logo {
+      color: #38bdf8;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .nav-profile {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .profile-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #38bdf8;
+    }
+
+    .profile-menu {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: #1e293b;
+      padding: 1em 1.5em;
+      border-radius: 0.75em;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      width: 200px;
+      z-index: 1000;
+      color: white;
+    }
+
+    .profile-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid #38bdf8;
+      margin-bottom: 0.5em;
+    }
+    .profile-name {
+      font-weight: bold;
+      font-size: 1.1em;
+      margin-bottom: 0.2em;
+    }
+    .profile-mail {
+      font-size: 0.9em;
+      color: #93c5fd;
+      margin-bottom: 1em;
+    }
+
+    /* Video Cards */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2em;
+      padding: 3em 4vw;
+      background: #0f172a;
+      min-height: 80vh;
+      color: white;
+    }
+
+    .video-card {
+      background: #1e293b;
+      border-radius: 1.2em;
+      box-shadow: 0 2px 15px #38bdf827;
+      overflow: hidden;
+      transition: transform 0.2s;
+      cursor: pointer;
+      color: #38bdf8;
+    }
+    .video-card:hover {
+      transform: scale(1.05);
+    }
+    .video-card img,
+    .video-card video {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .card-title {
+      padding: 1em;
+      font-weight: bold;
+      color: #38bdf8;
+    }
+  </style>
 </head>
 <body>
   <!-- Login/Signup Section -->
@@ -14,24 +251,39 @@
         <button id="show-login" class="toggle-btn active">Log In</button>
         <button id="show-signup" class="toggle-btn">Sign Up</button>
       </div>
-      <!-- Login -->
+
+      <!-- Login Form -->
       <form id="login-form" autocomplete="off">
         <h2>Login</h2>
         <input type="email" placeholder="Email" required>
-        <input type="password" placeholder="Password" required>
+        <input type="password" placeholder="Password" required id="login-password">
+
+        <div class="show-password-container">
+          <input type="checkbox" id="show-login-pass" />
+          <label for="show-login-pass">Show Password</label>
+        </div>
+
         <button type="submit" class="main-btn">Log In</button>
       </form>
-      <!-- Signup -->
+
+      <!-- Signup Form -->
       <form id="signup-form" class="hidden" autocomplete="off">
         <h2>Sign Up</h2>
         <input type="text" placeholder="Name" required>
         <input type="email" placeholder="Email" required>
-        <input type="password" placeholder="Password" required>
+        <input type="password" placeholder="Password" required id="signup-password">
+
+        <div class="show-password-container">
+          <input type="checkbox" id="show-signup-pass" />
+          <label for="show-signup-pass">Show Password</label>
+        </div>
+
         <button type="submit" class="main-btn second">Sign Up</button>
       </form>
     </div>
   </div>
-  <!-- Dashboard -->
+
+  <!-- Dashboard Section -->
   <div id="dashboard-section" class="center hidden">
     <div class="dash-profile">
       <img src="https://shorturl.at/1Mnfw" alt="Profile" class="dash-avatar">
@@ -40,6 +292,7 @@
       <button id="logout-btn" class="main-btn logout">Log Out</button>
     </div>
   </div>
+
   <!-- Main Page -->
   <div id="main-section" class="hidden">
     <nav class="navbar">
@@ -54,66 +307,40 @@
         </div>
       </div>
     </nav>
+
     <!-- YouTube Cards -->
     <div class="card-container">
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=hgZrPTsu1Hw&list=PLnMKJvEgUJfPXf4ZLJdxWCjUpEcTe4Koh','_blank')">
-        <img src="https://shorturl.at/WcG5C" alt="Math Class">
-        <div class="card-title">MATH CLASS - Oct 23, 2021</div>
-      </div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=5PaM_yqyOZU&list=PLnMKJvEgUJfOAzLgU5i1UU-0FxePcvODR','_blank')">
-        <img src="https://img.youtube.com/vi/5PaM_yqyOZU/mqdefault.jpg" alt="Video 2">
-        <div class="card-title">YT Video 2</div>
-      </div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=KJjYQq5or7U&list=PLnMKJvEgUJfMfjegbHhESbXiCdhLPEJ08','_blank')">
-        <img src="https://img.youtube.com/vi/KJjYQq5or7U/mqdefault.jpg" alt="Video 3">
-        <div class="card-title">YT Video 3</div>
-      </div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=3_Mz1Pu3njg&list=PLnMKJvEgUJfOf52aD3cnji373pQL0YmRz','_blank')">
-        <img src="https://img.youtube.com/vi/3_Mz1Pu3njg/mqdefault.jpg" alt="Video 4">
-        <div class="card-title">YT Video 4</div>
-      </div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=9C2tEYXQfHY&list=PLnMKJvEgUJfMzRVJglKGtFhraUxUM-3Xw','_blank')">
-        <img src="https://img.youtube.com/vi/9C2tEYXQfHY/mqdefault.jpg" alt="Video 5">
-        <div class="card-title">YT Video 5</div>
-      </div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=mByW0zgBUpg&list=PLnMKJvEgUJfMoKV7R0XumEEFaNQFGEhWh','_blank')">
-        <img src="https://img.youtube.com/vi/mByW0zgBUpg/mqdefault.jpg" alt="Video 6">
-        <div class="card-title">YT Video 6</div>
-      </div>
-    </div>
-  </div>
-  <div class="card-container">
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=hgZrPTsu1Hw&list=PLnMKJvEgUJfPXf4ZLJdxWCjUpEcTe4Koh','_blank')">
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=hgZrPTsu1Hw','_blank')">
         <img src="https://img.youtube.com/vi/hgZrPTsu1Hw/mqdefault.jpg" alt="Math Class">
         <div class="card-title">MATH CLASS - Oct 23, 2021</div>
       </div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=5PaM_yqyOZU&list=PLnMKJvEgUJfOAzLgU5i1UU-0FxePcvODR','_blank')">
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=5PaM_yqyOZU','_blank')">
         <img src="https://img.youtube.com/vi/5PaM_yqyOZU/mqdefault.jpg" alt="Video 2">
         <div class="card-title">YT Video 2</div>
       </div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=KJjYQq5or7U&list=PLnMKJvEgUJfMfjegbHhESbXiCdhLPEJ08','_blank')">
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=KJjYQq5or7U','_blank')">
         <img src="https://img.youtube.com/vi/KJjYQq5or7U/mqdefault.jpg" alt="Video 3">
         <div class="card-title">YT Video 3</div>
       </div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=3_Mz1Pu3njg&list=PLnMKJvEgUJfOf52aD3cnji373pQL0YmRz','_blank')">
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=3_Mz1Pu3njg','_blank')">
         <img src="https://img.youtube.com/vi/3_Mz1Pu3njg/mqdefault.jpg" alt="Video 4">
         <div class="card-title">YT Video 4</div>
       </div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=9C2tEYXQfHY&list=PLnMKJvEgUJfMzRVJglKGtFhraUxUM-3Xw','_blank')">
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=9C2tEYXQfHY','_blank')">
         <img src="https://img.youtube.com/vi/9C2tEYXQfHY/mqdefault.jpg" alt="Video 5">
         <div class="card-title">YT Video 5</div>
       </div>
-      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=mByW0zgBUpg&list=PLnMKJvEgUJfMoKV7R0XumEEFaNQFGEhWh','_blank')">
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=mByW0zgBUpg','_blank')">
         <img src="https://img.youtube.com/vi/mByW0zgBUpg/mqdefault.jpg" alt="Video 6">
         <div class="card-title">YT Video 6</div>
       </div>
     </div>
   </div>
-  <!-- JS for Behavior -->
+
   <script>
-    // Switch between forms
     const loginF = document.getElementById('login-form');
     const signupF = document.getElementById('signup-form');
+
     document.getElementById('show-login').onclick = () => {
       signupF.classList.add('hidden');
       loginF.classList.remove('hidden');
@@ -126,32 +353,53 @@
       document.getElementById('show-signup').classList.add('active');
       document.getElementById('show-login').classList.remove('active');
     };
-    // Fake login/signup progression
+
+    // Show/hide password toggles
+    document.getElementById('show-login-pass').addEventListener('change', function() {
+      const loginPass = document.getElementById('login-password');
+      loginPass.type = this.checked ? 'text' : 'password';
+    });
+
+    document.getElementById('show-signup-pass').addEventListener('change', function() {
+      const signupPass = document.getElementById('signup-password');
+      signupPass.type = this.checked ? 'text' : 'password';
+    });
+
+    // On Login form submit
     loginF.onsubmit = function(e){
       e.preventDefault();
       const email = loginF.querySelector('input[type="email"]').value;
-      document.getElementById('dashboard-name').textContent = email.split('@')[0];
+      const username = email.split('@')[0];
+      // Set dashboard & main profile info
+      document.getElementById('dashboard-name').textContent = username;
       document.getElementById('dashboard-email').textContent = email;
-      document.getElementById('profile-name').textContent = email.split('@')[0];
+      document.getElementById('profile-name').textContent = username;
       document.getElementById('profile-email').textContent = email;
+
       showOnly('dashboard-section');
       setTimeout(() => showOnly('main-section'), 1000);
     };
+
+    // On Signup form submit
     signupF.onsubmit = function(e){
       e.preventDefault();
       const name = signupF.querySelector('input[type="text"]').value;
       const email = signupF.querySelector('input[type="email"]').value;
+
       document.getElementById('dashboard-name').textContent = name;
       document.getElementById('dashboard-email').textContent = email;
       document.getElementById('profile-name').textContent = name;
       document.getElementById('profile-email').textContent = email;
+
       showOnly('dashboard-section');
       setTimeout(() => showOnly('main-section'), 1000);
     };
-    // Logout everywhere
+
+    // Logout buttons
     document.getElementById('logout-btn').onclick = () => showOnly('auth-section');
     document.getElementById('navbar-logout').onclick = () => showOnly('auth-section');
-    // Profile menu
+
+    // Profile menu toggle
     const profIcon = document.getElementById('profile-icon');
     const profMenu = document.getElementById('profile-menu');
     profIcon.onclick = e => {
@@ -160,7 +408,8 @@
     };
     document.body.onclick = () => profMenu.classList.add('hidden');
     profMenu.onclick = e => e.stopPropagation();
-    // Show only the given section
+
+    // Function to show only one section at a time
     function showOnly(id){
       ['auth-section','dashboard-section','main-section'].forEach(sec => {
         document.getElementById(sec).classList.add('hidden');
